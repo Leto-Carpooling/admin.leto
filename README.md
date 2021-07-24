@@ -1,3 +1,3 @@
 # admin.leto
 
-#### A React fronted for the admin side of Leto.
+#### A React frontend for the admin side of Leto.
