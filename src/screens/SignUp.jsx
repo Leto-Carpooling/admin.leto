@@ -4,9 +4,9 @@ import TextInput from "../components/TextInput";
 import { MdChevronRight } from "react-icons/md";
 import { colors } from "../assets/colors/colors";
 
-const Login = () => {
+const SignUp = () => {
     return (
-        <div className="h-screen w-full flex justify-center items-center">
+        <div className="h-screen w-full flex justify-center items-center my-28">
             <div className="w-4/12 shadow-lg drop-shadow-2xl rounded-lg border">
                 {/* Header */}
                 <div className="w-full bg-primary flex justify-center items-center flex-col py-10 px-3 rounded-t-lg">
@@ -28,11 +28,21 @@ const Login = () => {
                 <div className="flex flex-col p-3">
                     <div className="flex flex-row justify-end">
                         <span className="text-sm font-medium text-gray-500">
-                            Admin Login
+                            Admin Sign Up
                         </span>
                     </div>
 
                     {/* Text Inputs */}
+                    <TextInput
+                        label="Firstname"
+                        type="text"
+                        placeholder="Enter your firstname"
+                    />
+                    <TextInput
+                        label="Lastname"
+                        type="text"
+                        placeholder="Enter your lastname"
+                    />
                     <TextInput
                         label="Username"
                         type="text"
@@ -41,14 +51,19 @@ const Login = () => {
                     <TextInput
                         label="Password"
                         type="password"
-                        placeholder="Enter your password"
+                        placeholder="Choose a password"
+                    />
+                    <TextInput
+                        label="Confirm password"
+                        type="password"
+                        placeholder="Repeat the password"
                     />
 
                     {/* Spacer */}
                     <div className="mb-2"></div>
                     {/* Login button */}
                     <Button
-                        text="Login"
+                        text="Create account"
                         icon={<MdChevronRight size={24} color={colors.white} />}
                     />
                 </div>
@@ -57,4 +72,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

@@ -1,11 +1,13 @@
 import React from "react";
-const TextInput = ({ label, placeholder }) => {
+const TextInput = ({ label, placeholder, type }) => {
     return (
-        <div className="flex flex-col">
-            <span className="text-xs font-semibold text-gray-700">{label}</span>
+        <div className="flex flex-col p-2">
+            <span className="text-sm font-semibold text-gray-700 mb-2">
+                {label}
+            </span>
             <input
-                type="text"
-                className="bg-gray-300"
+                type={type}
+                className="bg-gray-200 px-4 py-3 rounded focus:outline-none"
                 placeHolder={placeholder}
             />
         </div>
