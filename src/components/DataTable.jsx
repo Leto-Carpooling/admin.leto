@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import EntriesInput from "./EntriesInput";
 import Paginator from "./Paginator";
 import SearchBox from "./SearchBox";
+import TableRow from "./TableRow";
 
 const DataTable = () => {
+    const [rows, setRows] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     return (
         <div className="m-5 border rounded-lg shadow">
             {/* Header */}
@@ -15,26 +17,23 @@ const DataTable = () => {
             {/* Body */}
             <div className="p-4">
                 <table className="w-full text-gray-500">
-                    <tr className="text-sm font-medium bg-primary text-white">
-                        <td className="text-center">User ID</td>
-                        <td className="text-center">Name</td>
-                        <td className="text-center">National ID</td>
-                        <td className="text-center">DL Number</td>
-                        <td className="text-center">Vehicle</td>
-                        <td className="text-center">Plate Number</td>
-                        <td className="text-center">Uploads</td>
-                        <td className="text-center">Action</td>
+                    <tr className="text-sm font-medium bg-primary text-white rounded-t-lg">
+                        <td className="text-center p-3 rounded-tl-lg">
+                            User ID
+                        </td>
+                        <td className="text-center p-4">Name</td>
+                        <td className="text-center p-4">National ID</td>
+                        <td className="text-center p-4">DL Number</td>
+                        <td className="text-center p-4">Vehicle</td>
+                        <td className="text-center p-4">Plate Number</td>
+                        <td className="text-center p-4">Uploads</td>
+                        <td className="text-center p-4 rounded-tr-lg">
+                            Action
+                        </td>
                     </tr>
-                    <tr>
-                        <td className="text-center">Jill</td>
-                        <td className="text-center">Smith</td>
-                        <td className="text-center">50</td>
-                    </tr>
-                    <tr>
-                        <td className="text-center">Eve</td>
-                        <td className="text-center">Jackson</td>
-                        <td className="text-center">94</td>
-                    </tr>
+                    {rows.map((row) => (
+                        <TableRow key={row} id={row} />
+                    ))}
                 </table>
             </div>
 
