@@ -1,16 +1,19 @@
 import React from "react";
-const Button = ({ text, icon, theme, styles }) => {
+
+const SmallButton = ({ text, icon, theme, styles }) => {
     return (
         <button
             className={
-                "flex flex-row justify-center items-center px-5 py-3 m-2 text-white rounded-sm shadow-xl " +
+                "flex flex-row justify-center gap-2 items-center px-4 py-2 m-1 text-sm font-medium text-white rounded-sm shadow " +
                 setTheme(theme) +
                 " " +
                 styles
             }
         >
             <span className="mx-auto flex-grow">{text}</span>
-            <span className="flex self-end ml-auto">{icon}</span>
+            <span className="flex self-end justify-center items-center">
+                {icon}
+            </span>
         </button>
     );
 };
@@ -24,4 +27,4 @@ function setTheme(theme) {
     }
 }
 
-export default Button;
+export default SmallButton;

@@ -9,27 +9,24 @@ const DataTable = () => {
     return (
         <div className="m-5 border rounded-lg shadow">
             {/* Header */}
-            <div className="bg-primary p-5 rounded-t-lg flex flex-row justify-between">
+            <div className="bg-primary px-5 pt-5 rounded-t-lg flex flex-row justify-between">
                 <SearchBox />
                 <EntriesInput />
             </div>
 
             {/* Body */}
-            <div className="p-4">
+            <div className="">
                 <table className="w-full text-gray-500">
-                    <tr className="text-sm font-medium bg-primary text-white rounded-t-lg">
-                        <td className="text-center p-3 rounded-tl-lg">
-                            User ID
-                        </td>
+                    <tr className="text-sm font-medium bg-primary text-white">
+                        <td className="text-center p-4"></td>
+                        <td className="text-center p-4">User ID</td>
                         <td className="text-center p-4">Name</td>
                         <td className="text-center p-4">National ID</td>
                         <td className="text-center p-4">DL Number</td>
                         <td className="text-center p-4">Vehicle</td>
                         <td className="text-center p-4">Plate Number</td>
                         <td className="text-center p-4">Uploads</td>
-                        <td className="text-center p-4 rounded-tr-lg">
-                            Action
-                        </td>
+                        <td className="text-center p-4 "></td>
                     </tr>
                     {rows.map((row) => (
                         <TableRow key={row} id={row} />
