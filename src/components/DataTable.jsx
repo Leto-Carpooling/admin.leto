@@ -9,7 +9,7 @@ const DataTable = () => {
     return (
         <div className="m-5 border rounded-lg shadow">
             {/* Header */}
-            <div className="bg-primary px-5 pt-5 rounded-t-lg flex flex-row justify-between">
+            <div className="bg-primary px-6 pt-6 rounded-t-lg flex flex-row justify-between">
                 <SearchBox />
                 <EntriesInput />
             </div>
