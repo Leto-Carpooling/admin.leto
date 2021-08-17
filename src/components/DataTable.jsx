@@ -17,20 +17,22 @@ const DataTable = () => {
             {/* Body */}
             <div className="">
                 <table className="w-full text-gray-500">
-                    <tr className="text-sm font-medium bg-primary text-white">
-                        <td className="text-center p-4"></td>
-                        <td className="text-center p-4">User ID</td>
-                        <td className="text-center p-4">Name</td>
-                        <td className="text-center p-4">National ID</td>
-                        <td className="text-center p-4">DL Number</td>
-                        <td className="text-center p-4">Vehicle</td>
-                        <td className="text-center p-4">Plate Number</td>
-                        <td className="text-center p-4">Uploads</td>
-                        <td className="text-center p-4 "></td>
-                    </tr>
-                    {rows.map((row) => (
-                        <TableRow key={row} id={row} />
-                    ))}
+                    <tbody>
+                        <tr className="text-sm font-medium bg-primary text-white">
+                            <td className="text-center p-4"></td>
+                            <td className="text-center p-4">User ID</td>
+                            <td className="text-center p-4">Name</td>
+                            <td className="text-center p-4">National ID</td>
+                            <td className="text-center p-4">DL Number</td>
+                            <td className="text-center p-4">Vehicle</td>
+                            <td className="text-center p-4">Plate Number</td>
+                            <td className="text-center p-4">Uploads</td>
+                            <td className="text-center p-4 "></td>
+                        </tr>
+                        {rows.map((row) => (
+                            <TableRow key={row} id={row} />
+                        ))}
+                    </tbody>
                 </table>
             </div>
 
