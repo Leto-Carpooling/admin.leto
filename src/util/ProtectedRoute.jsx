@@ -8,7 +8,7 @@ export const ProtectedRoute = ({ children, ...rest }) => {
         <Route
             {...rest}
             render={({ location }) => {
-                return user ? (
+                return localStorage.getItem("@user") ? (
                     children
                 ) : (
                     <Redirect

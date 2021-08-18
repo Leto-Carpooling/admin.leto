@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import { MdChevronRight } from "react-icons/md";
@@ -7,6 +7,7 @@ import { Toast } from "../components/Toast";
 import { Link } from "react-router-dom";
 import { api } from "../util/api";
 import { useHistory } from "react-router-dom";
+import { AppContext } from "../util/AppContext";
 
 const Login = () => {
     const history = useHistory();
@@ -14,6 +15,7 @@ const Login = () => {
     const [username, setUsername] = useState("mogoa.tonny@gmail.com");
     const [password, setPassword] = useState("kenyA2020");
     const [loading, setLoading] = useState(false);
+    const { user, setUser } = useContext(AppContext);
     return (
         <div className="h-screen w-full flex justify-center items-center">
             <div className="w-4/12 shadow-lg drop-shadow-2xl rounded-lg border">
@@ -109,6 +111,7 @@ const Login = () => {
                 console.log(resp.data);
                 if (resp.data.status === "OK") {
                     const user = JSON.parse(resp.data.message);
+                    setUser(user);
                     setUserOnLocalStorage(user);
                     history.push("/");
                 }

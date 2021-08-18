@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import EntriesInput from "./EntriesInput";
 import Paginator from "./Paginator";
 import SearchBox from "./SearchBox";
 import TableRow from "./TableRow";
+import { api } from "../util/api";
+import { AppContext } from "../util/AppContext";
 
 const DataTable = () => {
+    const { user } = useContext(AppContext);
+    getRows();
     const [rows, setRows] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     return (
         <div className="m-5 border rounded-lg shadow">
@@ -42,6 +46,32 @@ const DataTable = () => {
             </div>
         </div>
     );
+
+    function getRows() {
+        // const params = {
+        //     params: {
+        //         count: 5,
+        //         start: 0,
+        //         status: "pending",
+        //     },
+        // };
+        const params = new FormData();
+        params.append("count", 5);
+        params.append("start", 5);
+
+        const config = {
+            headers: {
+                auth: user.token,
+            },
+        };
+        api.post(`listDrivers.admin.php`, params, config)
+            .then((resp) => {
+                console.log(resp.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 };
 
 export default DataTable;
