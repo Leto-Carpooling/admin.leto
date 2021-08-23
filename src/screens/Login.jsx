@@ -105,7 +105,7 @@ const Login = () => {
         params.append("email", username);
         params.append("password", password);
 
-        api.post(`login.php`, params)
+        api.post(`user/login.php`, params)
             .then((resp) => {
                 setLoading(false);
                 console.log(resp.data);

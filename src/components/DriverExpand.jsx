@@ -7,8 +7,9 @@ import { MdDirectionsCar } from "react-icons/md";
 import { colors } from "../assets/colors/colors";
 import Button from "./Button";
 import TabItem from "./TabItem";
+import constants from "../util/constants";
 
-const DriverExpand = () => {
+const DriverExpand = ({ data }) => {
     const [tabs, setTabs] = useState([
         { label: "National ID", active: true },
         { label: "Driving License", active: false },
@@ -19,11 +20,14 @@ const DriverExpand = () => {
             <div className="w-3/12 bg-gray-100 flex flex-col items-center gap-4 text-gray-600">
                 {/* Avatar div */}
                 <div className="flex flex-row items-center gap-4 p-4 m-4">
-                    <Avatar src="https://picsum.photos/200/300" size={20} />
+                    <Avatar
+                        src={`${constants.serverUrl}storage/profile_images/${data?.userInfo.profile_image}`}
+                        size={20}
+                    />
                     <div className="flex flex-col">
-                        <span className="text-lg">John Doe</span>
+                        <span className="text-lg">{`${data?.userInfo.firstname} ${data.userInfo.lastname}`}</span>
                         <span className="text-xs font-medium">
-                            john.doe@gmail.com
+                            {data?.userInfo.email}
                         </span>
                     </div>
                 </div>
@@ -32,7 +36,7 @@ const DriverExpand = () => {
                 <div className="flex flex-col w-full mb-5">
                     <div className="bg-white p-3 text-center text-sm font-medium border-b border-r border-gray-100 flex flex-row items-center justify-center gap-4">
                         <MdDirectionsCar color={colors.primary} size={30} />
-                        <span className="text-xs font-medium">4 riders</span>
+                        <span className="text-xs font-medium">{`${data.vehicle.capacity} riders`}</span>
                     </div>
 
                     <div className="flex flex-row justify-between items-center p-4">

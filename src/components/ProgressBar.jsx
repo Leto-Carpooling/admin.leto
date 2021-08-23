@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-const ProgressBar = () => {
-    const [progress, setProgress] = useState(30);
-
-    useEffect(() => {
-        setInterval(
-            () => setProgress(Math.floor(Math.random() * 100) + 1),
-            2000
-        );
-    }, []);
-
+const ProgressBar = ({ progress, max }) => {
     // Styles
     const progressStyle = {
-        width: `${progress}%`,
+        width: `${Math.floor((progress * 100) / max)}%`,
         transition: "width 1s ease-in-out",
     };
 

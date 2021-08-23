@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import EntriesInput from "./EntriesInput";
 import Paginator from "./Paginator";
 import SearchBox from "./SearchBox";
@@ -8,8 +8,10 @@ import { AppContext } from "../util/AppContext";
 
 const DataTable = () => {
     const { user } = useContext(AppContext);
-    getRows();
-    const [rows, setRows] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    useEffect(() => {
+        getRows();
+    }, []);
+    const [rows, setRows] = useState([]);
     return (
         <div className="m-5 border rounded-lg shadow">
             {/* Header */}
@@ -33,8 +35,8 @@ const DataTable = () => {
                             <td className="text-center p-4">Uploads</td>
                             <td className="text-center p-4 "></td>
                         </tr>
-                        {rows.map((row) => (
-                            <TableRow key={row} id={row} />
+                        {rows.map((row, index) => (
+                            <TableRow key={index} id={index} data={row} />
                         ))}
                     </tbody>
                 </table>
@@ -48,25 +50,20 @@ const DataTable = () => {
     );
 
     function getRows() {
-        // const params = {
-        //     params: {
-        //         count: 5,
-        //         start: 0,
-        //         status: "pending",
-        //     },
-        // };
         const params = new FormData();
         params.append("count", 5);
-        params.append("start", 5);
+        params.append("start", 0);
 
         const config = {
             headers: {
                 auth: user.token,
             },
         };
-        api.post(`listDrivers.admin.php`, params, config)
+        api.post(`admin/listDrivers.admin.php`, params, config)
             .then((resp) => {
-                console.log(resp.data);
+                console.log(JSON.parse(resp.data.message));
+                const rows = JSON.parse(resp.data.message);
+                setRows(rows);
             })
             .catch((err) => {
                 console.log(err);

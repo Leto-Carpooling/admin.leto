@@ -8,11 +8,7 @@ const Avatar = ({ src, size }) => {
                 `w-${size} h-${size}`
             }
         >
-            <img
-                src="https://picsum.photos/200/300"
-                alt="avatar"
-                className=""
-            />
+            <img src={src} alt="avatar" className={`w-${size} h-${size}`} />
         </div>
     );
 };

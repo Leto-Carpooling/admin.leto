@@ -1,4 +1,5 @@
 import React from "react";
+import NavItem from "./NavItem";
 import UserBar from "./UserBar";
 const Navbar = () => {
     return (
@@ -11,11 +12,9 @@ const Navbar = () => {
             </div>
 
             {/* Nav items */}
-            <div className="flex flex-row flex-grow">
-                <div className="flex flex-col ml-10 justify-center items-center">
-                    <span className="text-sm font-medium mb-1">Drivers</span>
-                    <span className="w-6 h-1 bg-primary rounded-full"></span>
-                </div>
+            <div className="flex flex-row flex-grow items-center">
+                <NavItem label="Drivers" active={true} />
+                <NavItem label="Approve Admins" />
             </div>
             <div className="flex flex-row-reverse flex-grow">
                 <UserBar />

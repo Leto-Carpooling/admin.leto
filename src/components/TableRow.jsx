@@ -7,8 +7,9 @@ import { colors } from "../assets/colors/colors";
 import SmallButton from "./SmallButton";
 import Avatar from "./Avatar";
 import DriverExpand from "./DriverExpand";
+import constants from "../util/constants";
 
-const TableRow = ({ id }) => {
+const TableRow = ({ id, data }) => {
     const [expanded, setExpanded] = useState(false);
     let style = "bg-gray-100";
     if (id % 2 !== 0) {
@@ -23,21 +24,30 @@ const TableRow = ({ id }) => {
         <React.Fragment>
             <tr className={"rounded border my-2 text-sm " + style}>
                 <td className="text-center p-4 rounded-l flex justify-center items-center">
-                    <Avatar src="https://picsum.photos/200/300" size={10} />
+                    <Avatar
+                        src={`${constants.serverUrl}storage/profile_images/${data?.userInfo.profile_image}`}
+                        size={10}
+                    />
                 </td>
-                <td className="text-center p-4">1</td>
-                <td className="text-center p-4">John Doe</td>
-                <td className="text-center p-4">38069151</td>
-                <td className="text-center p-4">AB8069151</td>
+                <td className="text-center p-4">{data?.driverInfo.driverId}</td>
+                <td className="text-center p-4">{`${data?.userInfo.firstname} ${data.userInfo.lastname}`}</td>
+                <td className="text-center p-4">
+                    {data?.driverInfo.national_id}
+                </td>
+                <td className="text-center p-4">
+                    {data?.driverInfo.regular_license}
+                </td>
                 <td className="text-center p-4">
                     <div className="flex flex-col">
-                        <span>Subaru</span>
-                        <span className="text-xs">Impreza</span>
+                        <span>{data?.vehicle.manufacturer}</span>
+                        <span className="text-xs">{data?.vehicle.model}</span>
                     </div>
                 </td>
-                <td className="text-center p-4">KBX 348Y</td>
                 <td className="text-center p-4">
-                    <ProgressBar />
+                    {data.vehicle.license_plate}
+                </td>
+                <td className="text-center p-4">
+                    <ProgressBar progress={data?.driverInfo.uploads} max={7} />
                 </td>
                 <td className="text-center p-4">
                     <div className="w-full h-full flex justify-center items-center">
@@ -58,7 +68,7 @@ const TableRow = ({ id }) => {
                 <React.Fragment>
                     <tr className="rounded w-full mb-2 shadow">
                         <td colSpan="9" className="mb-10 border rounded p-0">
-                            <DriverExpand />
+                            <DriverExpand data={data} />
                         </td>
                     </tr>
                     <div className="mb-4"></div>

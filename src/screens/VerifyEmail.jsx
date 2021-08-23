@@ -46,7 +46,7 @@ const VerifyEmail = () => {
             },
         };
 
-        api.post(`confirmEmail.php`, params, config)
+        api.post(`user/confirmEmail.php`, params, config)
             .then((resp) => {
                 console.log(resp.data);
                 setLoading(false);

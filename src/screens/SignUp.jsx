@@ -120,7 +120,7 @@ const SignUp = () => {
         params.append("action", "e");
         params.append("email", username);
 
-        api.post(`signup.php`, params)
+        api.post(`user/signup.php`, params)
             .then((resp) => {
                 console.log(resp.data);
                 if (resp.data.status === "OK") {
@@ -139,7 +139,7 @@ const SignUp = () => {
         params.append("email", username);
         params.append("password", password);
 
-        api.post(`signup.php`, params)
+        api.post(`user/signup.php`, params)
             .then((resp) => {
                 console.log(resp.data);
                 if (resp.data.status === "OK") {
@@ -170,7 +170,7 @@ const SignUp = () => {
                 auth: token,
             },
         };
-        api.post(`editProfile.php`, params, config)
+        api.post(`user/editProfile.php`, params, config)
             .then((resp) => {
                 console.log(resp.data);
                 if (resp.data.status === "OK") {
