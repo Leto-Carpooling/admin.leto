@@ -62,8 +62,10 @@ const DataTable = () => {
         api.post(`admin/listDrivers.admin.php`, params, config)
             .then((resp) => {
                 console.log(JSON.parse(resp.data.message));
-                const rows = JSON.parse(resp.data.message);
-                setRows(rows);
+                if (resp.data.status === "OK") {
+                    const rows = JSON.parse(resp.data.message);
+                    setRows(rows);
+                }
             })
             .catch((err) => {
                 console.log(err);
