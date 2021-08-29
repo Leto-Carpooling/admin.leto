@@ -5,9 +5,11 @@ import SearchBox from "./SearchBox";
 import TableRow from "./TableRow";
 import { api } from "../util/api";
 import { AppContext } from "../util/AppContext";
+import TabCatChooser from "./TabCatChooser";
 
 const DataTable = () => {
     const { user } = useContext(AppContext);
+    const [category, setCategory] = useState("all");
     useEffect(() => {
         getRows();
     }, []);
@@ -15,8 +17,9 @@ const DataTable = () => {
     return (
         <div className="m-5 border rounded-lg shadow">
             {/* Header */}
-            <div className="bg-primary px-6 pt-6 rounded-t-lg flex flex-row justify-between">
+            <div className="bg-primary px-6 pt-6 rounded-t-lg flex flex-row justify-between items-center">
                 <SearchBox />
+                <TabCatChooser category={category} setCategory={setCategory} />
                 <EntriesInput />
             </div>
 
@@ -33,11 +36,24 @@ const DataTable = () => {
                             <td className="text-center p-4">Vehicle</td>
                             <td className="text-center p-4">Plate Number</td>
                             <td className="text-center p-4">Uploads</td>
+                            <td className="text-center p-4">Status</td>
                             <td className="text-center p-4 "></td>
                         </tr>
-                        {rows.map((row, index) => (
-                            <TableRow key={index} id={index} data={row} />
-                        ))}
+                        {rows.map((row, index) => {
+                            if (
+                                category === "all" ||
+                                category === row.driverInfo.approval_status
+                            ) {
+                                return (
+                                    <TableRow
+                                        key={index}
+                                        id={index}
+                                        data={row}
+                                        getRows={getRows}
+                                    />
+                                );
+                            }
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -61,7 +77,7 @@ const DataTable = () => {
         };
         api.post(`admin/listDrivers.admin.php`, params, config)
             .then((resp) => {
-                console.log(JSON.parse(resp.data.message));
+                console.log(resp.data);
                 if (resp.data.status === "OK") {
                     const rows = JSON.parse(resp.data.message);
                     setRows(rows);

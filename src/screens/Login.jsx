@@ -12,10 +12,11 @@ import { AppContext } from "../util/AppContext";
 const Login = () => {
     const history = useHistory();
     const [toastVisible, setToastVisible] = useState(false);
+    const [toastText, setToastText] = useState("");
     const [username, setUsername] = useState("mogoa.tonny@gmail.com");
     const [password, setPassword] = useState("kenyA2020");
     const [loading, setLoading] = useState(false);
-    const { user, setUser } = useContext(AppContext);
+    const { setUser } = useContext(AppContext);
     return (
         <div className="h-screen w-full flex justify-center items-center">
             <div className="w-4/12 shadow-lg drop-shadow-2xl rounded-lg border">
@@ -43,8 +44,12 @@ const Login = () => {
                         </span>
                     </div>
 
-                    <div className="w-full">
-                        <Toast text="Invaid Creds" hidden={!toastVisible} />
+                    <div className="w-full p-4">
+                        <Toast
+                            text={toastText}
+                            hidden={!toastVisible}
+                            theme="danger"
+                        />
                     </div>
                     {/* Text Inputs */}
                     <div className="w-full">
@@ -114,6 +119,9 @@ const Login = () => {
                     setUser(user);
                     setUserOnLocalStorage(user);
                     history.push("/");
+                } else {
+                    setToastVisible(true);
+                    setToastText(resp.data.message);
                 }
             })
             .catch((err) => {

@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 
 const VerifyEmail = () => {
     const history = useHistory();
-    const { user, setUser } = useContext(AppContext);
+    const { user } = useContext(AppContext);
     const [code, onChangeCode] = useState("");
     const [loading, setLoading] = useState(false);
     const [toastText, setToastText] = useState("");

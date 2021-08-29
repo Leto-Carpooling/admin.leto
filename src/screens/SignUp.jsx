@@ -6,7 +6,7 @@ import { colors } from "../assets/colors/colors";
 import { api } from "../util/api";
 import { Toast } from "../components/Toast";
 import { AppContext } from "../util/AppContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const SignUp = () => {
     const history = useHistory();
@@ -47,7 +47,11 @@ const SignUp = () => {
                         </span>
                     </div>
 
-                    <Toast text={toastText} hidden={!toastVisible} />
+                    <Toast
+                        text={toastText}
+                        hidden={!toastVisible}
+                        theme="danger"
+                    />
                     {/* Text Inputs */}
                     <TextInput
                         label="Firstname"
@@ -104,6 +108,14 @@ const SignUp = () => {
                         onClick={signup}
                         loading={loading}
                     />
+                    <div className="w-full flex justify-center items-center p-2">
+                        <Link
+                            to="/login"
+                            className="text-gray-500 text-sm px-5 py-2 hover:bg-gray-200 rounded"
+                        >
+                            Login
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,7 +124,6 @@ const SignUp = () => {
     function signup() {
         setLoading(true);
         checkEmail();
-        console.log(username);
     }
 
     function checkEmail() {
@@ -147,11 +158,7 @@ const SignUp = () => {
                     setUser(user);
                     setProfile(user.token);
                 } else {
-                    setToastText(
-                        resp.data.message
-                            ? resp.data.message
-                            : "Something went wrong"
-                    );
+                    setToastText(resp.data.message);
                     setToastVisible(true);
                 }
             })
@@ -174,8 +181,11 @@ const SignUp = () => {
             .then((resp) => {
                 console.log(resp.data);
                 if (resp.data.status === "OK") {
+                    const user = JSON.parse(resp.data.message);
+                    setUser(user);
+                    setUserOnLocalStorage(user);
                     setLoading(false);
-                    history.push("verifyemail");
+                    history.push("/verifyemail");
                 } else {
                     setToastText(resp.data.message);
                     setToastVisible(true);
@@ -184,5 +194,9 @@ const SignUp = () => {
             .catch((err) => console.log(err));
     }
 };
+
+function setUserOnLocalStorage(user) {
+    localStorage.setItem("@user", JSON.stringify(user));
+}
 
 export default SignUp;

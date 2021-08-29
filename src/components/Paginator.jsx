@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import ArrowLink from "./ArrowLink";
 import PageLink from "./PageLink";
 

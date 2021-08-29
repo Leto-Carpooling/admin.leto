@@ -6,7 +6,7 @@ const Button = ({ text, icon, theme, styles, onClick, loading }) => {
         <div
             onClick={onClick}
             className={
-                "flex flex-row justify-center items-center px-5 py-3 m-2 text-white rounded shadow-xl " +
+                "flex flex-row justify-between gap-4 items-center px-5 py-3 m-2 text-white rounded shadow-xl " +
                 setTheme(theme) +
                 " " +
                 styles

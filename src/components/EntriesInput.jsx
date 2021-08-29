@@ -6,6 +6,7 @@ const EntriesInput = () => {
             <span className="text-white font-medium">show</span>
             <input
                 type="number"
+                value="10"
                 className="w-16 focus:outline-none rounded px-2 py-1 text-gray-600"
             />
             <span className="text-white font-medium">entries</span>
