@@ -12,7 +12,7 @@ const DataTable = () => {
     const [category, setCategory] = useState("all");
     useEffect(() => {
         getRows();
-    }, []);
+    });
     const [rows, setRows] = useState([]);
     return (
         <div className="m-5 border rounded-lg shadow">
@@ -53,6 +53,7 @@ const DataTable = () => {
                                     />
                                 );
                             }
+                            return null;
                         })}
                     </tbody>
                 </table>
